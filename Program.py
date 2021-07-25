@@ -46,12 +46,19 @@ def HomeScreen():
             ['&Usuários', ['Cadastrar Logins', 'Busca por Nome', 'Busca por E-mail', 'Busca por Skype']],
             ['&Equipamentos', ['Cadastrar Equipamentos', 'Busca por Usuário', 'Busca por TAG'], ['Busca por ID']],
             ['&Ajuda', 'Sobre']]
+    
+    background_home = [[sg.Image(filename='Images/background.png')]]
 
     layout = [
         [sg.Menu(menu_def)],
-        [sg.Image(filename='Images/background.png')]
+        [sg.Text(key='-EXPAND-', font='ANY 1', pad=(0, 0))],
+        [sg.Text('', pad=(0,0),key='-EXPAND2-'),
+         sg.Column(background_home, vertical_alignment='center', justification='center',  k='-C-')]
     ]
     homescreen = sg.Window("S.G.T.I. - Sistema de Gestão da Tecnologia da Informação", layout, size=(800,500), resizable=True, element_justification='c', icon='Images/icon.ico', finalize=True)
+    homescreen['-C-'].expand(True, True, True)
+    homescreen['-EXPAND-'].expand(True, True, True)
+    homescreen['-EXPAND2-'].expand(True, False, True)
     homescreen.TKroot.focus_force()    
 
     while True:
